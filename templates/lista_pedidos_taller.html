@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid justify-space-between">
+            <div class="p-0 row">
+                <form action="" method="GET" class="px-5 my-2">
+                    <h5 class="mb-3">Buscador de Turnos por Nombre/Apellido o Rango de Fechas</h5>
+                    <label for="fecha_desde">Nombre/Apellido del Paciente:</label>
+                    <input type="text" placeholder="Nombre/Apellido" name="paciente">
+                    <label for="fecha_desde">Fecha desde:</label>
+                    <input type="date" placeholder="Fecha desde" name="fecha_desde">
+                    <label for="fecha_desde">Fecha hasta:</label>
+                    <input type="date" placeholder="Fecha hasta" name="fecha_hasta">
+                    <input type="submit" value="Buscar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-4 text-center">Listado de Pedidos</h1>
+    <div class="row justify-content-end mx-3 px-3 mb-2">    
+        <a href="{% url 'pedido-add' %}" class="btn btn-success">
+            Agregar Pedido
+            <i class="fas fa-plus ml-3 text-white"></i>
+        </a>
+    </div>
+    {% if lista_pedidos %}
+    <div class="row table-responsive px-3">
+        <table class="table table-success border">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col"># Pedido</th>
+                    <th class="text-center" scope="col">Paciente</th>
+                    <th class="text-center" scope="col">Vendedor</th>
+                    <th class="text-center" scope="col">Fecha y Hora</th>
+                    <th class="text-center" scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for pedido in lista_pedidos %}
+                    <tr>
+                        <td class="text-center">{{ pedido.id }}</td>
+                        <td class="text-center">{{ pedido.paciente.paciente_apellido }}{{", "}}{{ pedido.paciente.paciente_nombre }}</td>
+                        <td class="text-center">{{"Vend. "}}{{ pedido.vendedor.last_name }}{{", "}}{{ pedido.vendedor.first_name }}</td>
+                        <td class="text-center">{{ pedido.fecha }}</td>
+                        <td class="text-center">{{ pedido.get_estado_display }}</td>
+                        <td class="m-0"><a href="{% url 'pedido-update' pedido.id %}" class="btn btn-primary">Modificar</a></td>
+                        <td class="m-0"><a href="{% url 'lista_items_pedidos_taller' %}" class="btn btn-primary">Ver Productos</a></td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+
+    <h4 class="mx-5">No se encontraron pedidos.</h4>
+
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid justify-space-between">
+            <div class="p-0 row">
+                <form action="" method="GET" class="px-5 my-2">
+                    <h5 class="mb-3">Buscador de Pacientes por Nombre o Apellido</h5>
+                    <label for="paciente_nombre">Nombre del Paciente:</label>
+                    <input type="text" placeholder="Nombre" name="paciente_nombre">
+                    <label for="paciente_apellido">Fecha desde:</label>
+                    <input type="text" placeholder="Apellido" name="paciente_apellido">
+                    <input type="submit" value="Buscar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-4 text-center">Listado de Pacientes</h1>
+    <div class="row justify-content-end mx-3 px-3 mb-2">    
+        <a href="{% url 'paciente-add' %}" class="btn btn-success">
+            Agregar Paciente
+            <i class="fas fa-plus ml-3 text-white"></i>
+        </a>
+    </div>
+    {% if lista_pacientes %}
+    <div class="row table-responsive px-3">
+        <table class="table table-success border">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Apellido y Nombre</th>
+                    <th class="text-center" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for paciente in lista_pacientes %}
+                    <tr>
+                        <td class="text-center">{{ paciente.paciente_apellido }}{{", "}}{{ paciente.paciente_nombre }}</td>
+                        <td class="m-0"><a href="{% url 'paciente-update' paciente.id %}" class="btn btn-primary">Modificar</a></td>
+                        <td class="m-0"><a href="{% url 'paciente-delete' paciente.id %}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+
+    <h4 class="mx-5">No se encontraron pacientes.</h4>
+
+    {% endif %}
+</div>
+{% endblock %}

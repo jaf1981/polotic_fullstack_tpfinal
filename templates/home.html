@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+{% if user.is_superuser %}
+
+<h1 class="m-5">Rol Administrador - {{request.user.first_name}} {{request.user.last_name}}</h1>
+
+<a class="mx-5 p-2 bg-light border border-primary rounded" href="{% url 'admin:index' %}">Ir a Panel Admin</a>
+
+{% else %}
+
+<h1 class="mx-5 my-5">¡Bienvenido a Clinica Iris!</h1>
+
+<h3 class="mx-5 mt-5">Inicie sesión para operar.</h3>
+
+{% endif %}
+<!-- <script>
+fetch("http://127.0.0.1:8000/api_products/1/")
+    .then(response => response.json())
+    .then(function(data) {
+        console.log(data)
+        alert(`El producto es el ${data.title} y su precio es ${data.price}`)
+    })
+
+</script> -->
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<form class="ml-5"action="" method="post">
+    {% csrf_token %}
+    <p>
+    {{"¿Confirma que desea eliminar el paciente con id:"}}{{ paciente.id }}{{", llamado: "}}{{ paciente.paciente_apellido }}{{", "}}{{ paciente.paciente_nombre }}{{"?"}}
+    </p>
+    <input type="submit" value="Confirmar y Eliminar" />
+    
+</form>
+
+{% endblock %}

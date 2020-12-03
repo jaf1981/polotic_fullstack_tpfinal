@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h1 class="m-5">Software de Gestión - Clínica Iris</h1>
+
+<h2 class="mx-5">Panel de Control de: {{request.user.first_name}} {{request.user.last_name}}</h2>
+<h3 class="mx-5 mb-5">Grupo de Usuarios: {{ grupo }}</h3>
+
+<h5 class="mx-5 my-3">Gestionar:</h5>
+
+<div class="d-flex flex-row mx-5">
+    <a class="mx-1 p-2 bg-light border border-primary rounded" href="{%  url 'lista_pedidos_taller' %}">Pedidos
+        <i class="fas fa-tools ml-3 text-success"></i>
+    </a>
+    
+    <!-- <a class="mx-1 p-2 bg-light border border-primary rounded" href="{%  url 'lista_historias_m' %}">Historia Clínica Pacientes
+        <i class="fas fa-tools ml-3 text-success"></i>
+    </a> -->
+</div>
+
+
+{% endblock %}

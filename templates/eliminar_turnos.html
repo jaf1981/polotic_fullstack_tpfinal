@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<form class="ml-5"action="" method="post">
+    {% csrf_token %}
+    <p>
+    {{"¿Confirma que desea eliminar el turno con id:"}}{{ turno.id }}{{" fecha y hora:"}} {{ turno.diahora }}{{", paciente:"}}{{ turno.paciente.paciente_apellido }}{{", "}}{{ turno.paciente.paciente_nombre }}{{" asignado al profesional: "}}{{ turno.profesional.last_name }}{{", "}}{{ turno.profesional.first_name }} {{"?"}}
+    </p>
+    <input type="submit" value="Confirmar y Eliminar" />
+    
+</form>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<form class="ml-5"action="" method="post">
+    {% csrf_token %}
+    <p>
+    {{"¿Confirma que desea eliminar el pedido con id:"}}{{ pedido.id }}{{" fecha:"}} {{ pedido.fecha }}{{", paciente:"}}{{ pedido.paciente.paciente_apellido }}{{", "}}{{ pedido.paciente.paciente_nombre }}{{" asignado al vendedor: "}}{{ pedido.vendedor.last_name }}{{", "}}{{ pedido.vendedor.first_name }} {{"?"}}
+    </p>
+    <input type="submit" value="Confirmar y Eliminar" />
+    
+</form>
+
+{% endblock %}

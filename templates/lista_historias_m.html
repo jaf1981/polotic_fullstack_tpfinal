@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid justify-space-between">
+            <div class="p-0 row">
+                <form action="" method="GET" class="px-5 my-2">
+                    <h5 class="mb-3">Buscador de Historia Clínica por Nombre/Apellido o Rango de Fechas</h5>
+                    <label for="fecha_desde">Nombre/Apellido del Paciente:</label>
+                    <input type="text" placeholder="Nombre/Apellido" name="paciente">
+                    <label for="fecha_desde">Fecha desde:</label>
+                    <input type="date" placeholder="Fecha desde" name="fecha_desde">
+                    <label for="fecha_desde">Fecha hasta:</label>
+                    <input type="date" placeholder="Fecha hasta" name="fecha_hasta">
+                    <input type="submit" value="Buscar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-4 text-center">Historia Clínica</h1>
+
+    {% if historias_m %}
+    <div class="row table-responsive px-3">
+        <table class="table table-success border">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Paciente</th>
+                    <th class="text-center" scope="col">Medico</th>
+                    <th class="text-center" scope="col">Fecha y Hora</th>
+                    <th class="text-center" scope="col">Observación</th>
+                    <th class="text-center" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for historia in historias_m %}
+                    <tr>
+                        <td class="text-center">{{ historia.paciente.paciente_apellido }}{{", "}}{{ historia.paciente.paciente_nombre }}</td>
+                        <td class="text-center">{{"Dr/a. "}}{{ historia.profesional.last_name }}{{", "}}{{ historia.profesional.first_name }}</td>
+                        <td class="text-center">{{ historia.diahora }}</td>
+                        <td class="text-center">{{ historia.observacion }}</td>
+                        <td class="m-0"><a href="{% url 'historia-update' historia.id %}" class="btn btn-primary">Modificar Historia Clínica</a></td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+
+    <h4 class="mx-5">No se encontraron registros.</h4>
+
+    {% endif %}
+</div>
+{% endblock %}

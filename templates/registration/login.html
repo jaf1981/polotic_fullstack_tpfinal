@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p class="mx-5">Su usuario y contraseña no coinciden. Intente nuevamente.</p>
+  {% endif %}
+  
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p class="mx-5">Su cuenta no tiene acceso a esta página. Para proceder,
+      por favor inicie sesión con una cuenta que posea acceso.</p>
+    {% else %}
+      <p class="mx-5">Por favor inicie sesión.</p>
+    {% endif %}
+  {% endif %}
+  
+  <form method="post" action="{% url 'login' %}" class="mx-5">
+    {% csrf_token %}
+    <table class="my-3">
+      <tr>
+        <td class="px-2">{{ form.username.label_tag }}</td>
+        <td class="px-2">{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td class="px-2">{{ form.password.label_tag }}</td>
+        <td class="px-2">{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="Iniciar Sesión" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+  
+  {# Simulación de envio de mail de reseteo de password por consola #}
+  <p class="my-2"><a href="{% url 'password_reset' %}" class="mx-5">¿Olvidaste la contraseña?</a></p>
+  
+{% endblock %}

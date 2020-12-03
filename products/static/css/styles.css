@@ -1,0 +1,17 @@
+.errorlist
+    {
+        color: red;
+        font-weight: bold;
+    }
+
+.sidebar-nav {
+    display: flex;
+    margin-top: 100px;
+    padding: 30px;
+    list-style: none;
+    background-color: rgb(144, 238, 183);
+}
+
+li {
+    margin-right: 10px;
+}
