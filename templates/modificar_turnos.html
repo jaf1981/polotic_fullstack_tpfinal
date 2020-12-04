@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h2>Modificar Composición del Pedido</h2>
+<h2>Modificar Turnos</h2>
 
 <form action="" method="post" class="mx-5">
     {% csrf_token %}
@@ -9,8 +9,7 @@
     {{ form.as_table }}
     </table>
     <input type="submit" value="Guardar Cambios" />
+    
 </form>
-
-{{itemspedido_form.producto}}
 
 {% endblock %}

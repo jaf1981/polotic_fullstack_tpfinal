@@ -21,12 +21,6 @@
         </div>
     </div>
     <h1 class="mt-4 text-center">Listado de Pedidos</h1>
-    <div class="row justify-content-end mx-3 px-3 mb-2">    
-        <a href="{% url 'pedido-add' %}" class="btn btn-success">
-            Agregar Pedido
-            <i class="fas fa-plus ml-3 text-white"></i>
-        </a>
-    </div>
     {% if lista_pedidos %}
     <div class="row table-responsive px-3">
         <table class="table table-success border">

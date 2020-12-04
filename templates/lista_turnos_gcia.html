@@ -27,12 +27,6 @@
         </div>
     </div>
     <h1 class="mt-4 text-center">Listado de Asistencia de Pacientes</h1>
-    <div class="row justify-content-end mx-3 px-3 mb-2">    
-        <a href="{% url 'turno-add' %}" class="btn btn-success">
-            Agregar Turno
-            <i class="fas fa-plus ml-3 text-white"></i>
-        </a>
-    </div>
     {% if lista_turnos %}
     <div class="row table-responsive px-3">
         <table class="table table-success border">

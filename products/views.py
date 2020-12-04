@@ -259,7 +259,7 @@ class ItemsPedidoListView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'lista_items_pedidos'
     template_name = 'lista_items_pedidos.html'
     
-    def get_queryset(self):
+    def get_queryset(self, *args):
         queryset = ItemsPedido.objects.filter(Q(pedido__vendedor=self.request.user)) 
         if self.request.GET.get('producto'):
             producto = self.request.GET.get('producto')
@@ -370,7 +370,7 @@ class PedidoGciaListView(LoginRequiredMixin, generic.ListView):
             queryset = queryset.filter(Q(paciente__paciente_nombre__icontains=paciente) | Q(paciente__paciente_apellido__icontains=paciente))
         if self.request.GET.get('vendedor'):
             vendedor = self.request.GET.get('vendedor')
-            queryset = queryset.filter(Q(vendedor__first_name__icontains=vendedor) | Q(vendedor__vendedor_apellido__icontains=vendedor))
+            queryset = queryset.filter(Q(vendedor__first_name__icontains=vendedor) | Q(vendedor__last_name__icontains=vendedor))
         if self.request.GET.get('estado'):
             estado = self.request.GET.get('estado')
             queryset = Pedido.objects.filter(Q(estado=estado)).order_by('fecha')
